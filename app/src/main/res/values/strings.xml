@@ -1,4 +1,25 @@
 <resources>
     <string name="app_name">ShareRide</string>
     <string name="title_activity_main">MainActivity</string>
+
+    <string name="welcome">Welcome to ShareRide!</string>
+    <string name="welcome_second">Discover travel options for your daily commute.</string>
+    <string name="register_caption">New to ShareRide? Register now!</string>
+    <string name="register_button">REGISTER</string>
+    <string name="register_thanks">Thanks for registering!</string>
+    <string name="login_caption">Already have an account?</string>
+    <string name="login_button">LOGIN</string>
+    <string name="login_welcome">Welcome Back!</string>
+    <string name="placeholder_username">Enter username</string>
+    <string name="placeholder_fullname">Enter full name</string>
+    <string name="placeholder_id">Enter ID/Driver License number</string>
+    <string name="placeholder_contact">Enter contact number</string>
+    <string name="placeholder_password">Enter password</string>
+    <string name="placeholder_confirm_password">Confirm password</string>
+    <string name="user_category">I am a...</string>
+    <string name="passenger">Passenger</string>
+    <string name="driver">Driver</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
