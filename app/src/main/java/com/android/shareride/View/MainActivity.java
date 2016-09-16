@@ -12,6 +12,7 @@ public class MainActivity extends AppCompatActivity {
 
     private WelcomePagerAdapter mSectionsPagerAdapter;
     private ViewPager mViewPager;
+    private DatabaseHelper sharerideDB;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
         mSectionsPagerAdapter = new WelcomePagerAdapter(getSupportFragmentManager());
         mViewPager = (ViewPager)findViewById(R.id.vpgWelcome);
         mViewPager.setAdapter(mSectionsPagerAdapter);
+        sharerideDB = new DatabaseHelper(this);
     }
 
     @Override
