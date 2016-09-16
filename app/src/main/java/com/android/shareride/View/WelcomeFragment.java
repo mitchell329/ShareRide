@@ -64,12 +64,12 @@ public class WelcomeFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View mView = inflater.inflate(R.layout.fragment_welcome, container, false);
-        Button btnLogin = (Button) mView.findViewById(R.id.loginPageButton);
-        Button btnRegister = (Button) mView.findViewById(R.id.registerPageButton);
+        View view = inflater.inflate(R.layout.fragment_welcome, container, false);
+        Button btnLogin = (Button) view.findViewById(R.id.loginPageButton);
+        Button btnRegister = (Button) view.findViewById(R.id.registerPageButton);
         btnLogin.setOnClickListener(handler);
         btnRegister.setOnClickListener(handler);
-        return mView;
+        return view;
     }
 
     View.OnClickListener handler = new  View.OnClickListener() {

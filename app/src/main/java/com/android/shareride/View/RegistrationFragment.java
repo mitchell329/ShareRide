@@ -1,19 +1,23 @@
 package com.android.shareride.View;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import com.android.shareride.R;
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link RegistrationFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
  * Use the {@link RegistrationFragment#newInstance} factory method to
  * create an instance of this fragment.
@@ -24,11 +28,21 @@ public class RegistrationFragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
+    private static final  String EMPTY_FIELD_TOAST = "Please fill all the fields to register.";
+    private static final String PASSWORD_INCONSISTENCY_TOAST = "Confirm password is different, please enter again.";
+    private static final String REGISTER_FAIL_TOAST = "Sorry, registration failed. Please try another username.";
+
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
 
-    //private OnFragmentInteractionListener mListener;
+    private EditText txtUsername;
+    private EditText txtFullname;
+    private EditText txtDriverLicense;
+    private EditText txtContact;
+    private EditText txtPassword;
+    private EditText txtConfirmPassword;
+    private Button btnRegister;
 
     public RegistrationFragment() {
         // Required empty public constructor
@@ -65,8 +79,53 @@ public class RegistrationFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_registration, container, false);
+        View view = inflater.inflate(R.layout.fragment_registration, container, false);
+        txtUsername = (EditText) view.findViewById(R.id.usernameEditText);
+        txtFullname = (EditText) view.findViewById(R.id.fullnameEditText);
+        txtDriverLicense = (EditText) view.findViewById(R.id.idEditText);
+        txtContact = (EditText) view.findViewById(R.id.contactEditText);
+        txtPassword = (EditText) view.findViewById(R.id.passwordEditText);
+        txtConfirmPassword = (EditText) view.findViewById(R.id.confirmPasswordEditText);
+        btnRegister = (Button) view.findViewById(R.id.registerButton);
+        btnRegister.setOnClickListener(handler);
+        return view;
     }
+
+    View.OnClickListener handler = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            DatabaseHelper helper = new DatabaseHelper(getContext());
+            String password = txtPassword.getText().toString();
+            String confirm = txtConfirmPassword.getText().toString();
+
+            //Toast.makeText(getContext(), "helper created", Toast.LENGTH_SHORT).show();
+
+            if (txtUsername.getText().toString().equals("") ||
+                    txtFullname.getText().toString().equals("") ||
+                    txtDriverLicense.getText().toString().equals("") ||
+                    txtConfirmPassword.getText().toString().equals("") ||
+                    txtPassword.getText().toString().equals("") ||
+                    txtConfirmPassword.getText().toString().equals("")) {
+                Toast.makeText(getContext(), EMPTY_FIELD_TOAST, Toast.LENGTH_SHORT).show();
+            }
+            else if (!password.equals(confirm)) {
+                Toast.makeText(getContext(), PASSWORD_INCONSISTENCY_TOAST, Toast.LENGTH_SHORT).show();
+            }
+            else {
+                boolean success = helper.insertUserRegistrationData(txtFullname.getText().toString(), txtUsername.getText().toString(), txtDriverLicense.getText().toString(), txtPassword.getText().toString(), txtContact.getText().toString());
+                if (success) {
+                    Intent intent = new Intent(getContext(), HomeActivity.class);
+                    intent.putExtra("Username", txtUsername.getText().toString());
+                    intent.putExtra("Fullname", txtFullname.getText().toString());
+                    startActivity(intent);
+                    getActivity().finish();
+                }
+                else {
+                    Toast.makeText(getContext(), REGISTER_FAIL_TOAST, Toast.LENGTH_SHORT).show();
+                }
+            }
+        }
+    };
 
     // TODO: Rename method, update argument and hook method into UI event
     /*public void onButtonPressed(Uri uri) {

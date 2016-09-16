@@ -3,9 +3,9 @@ package com.android.shareride.View;
 public class User {
     public String fullName;
     public String username;
-    public String emailAddress;
+    public String driversLicense;
     public String password;
-    public String userCategory;
+    public String contactNum;
     public String dateOfBirth;
     public String gender;
     public String description;

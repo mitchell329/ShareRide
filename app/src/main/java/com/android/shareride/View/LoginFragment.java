@@ -1,19 +1,22 @@
 package com.android.shareride.View;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import com.android.shareride.R;
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link LoginFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
  * Use the {@link LoginFragment#newInstance} factory method to
  * create an instance of this fragment.
@@ -24,11 +27,14 @@ public class LoginFragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
+    private static final String LOGIN_FAIL_TOAST = "Unvalid username or password, please try again.";
+
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
 
-    //private OnFragmentInteractionListener mListener;
+    private EditText txtUsername;
+    private EditText txtPassword;
 
     public LoginFragment() {
         // Required empty public constructor
@@ -65,8 +71,31 @@ public class LoginFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_login, container, false);
+        View view = inflater.inflate(R.layout.fragment_login, container, false);
+        txtUsername = (EditText) view.findViewById(R.id.loginUsernameEditText);
+        txtPassword = (EditText) view.findViewById(R.id.loginPasswordEditText);
+        Button btnLogin = (Button) view.findViewById(R.id.loginButton);
+        btnLogin.setOnClickListener(handler);
+        return view;
     }
+
+    View.OnClickListener handler = new View.OnClickListener() {
+        public void onClick(View v) {
+            DatabaseHelper helper = new DatabaseHelper(getContext());
+            User user = helper.validateUserLoginData(txtUsername.getText().toString(), txtPassword.getText().toString());
+            if (user != null) {
+                Intent intent = new Intent(getContext(), HomeActivity.class);
+                intent.putExtra("Username", txtUsername.getText().toString());
+                String fullName = user.fullName;
+                intent.putExtra("Fullname", fullName);
+                startActivity(intent);
+                getActivity().finish();
+            }
+            else {
+                Toast.makeText(getContext(), LOGIN_FAIL_TOAST, Toast.LENGTH_SHORT).show();
+            }
+        }
+    };
 
     // TODO: Rename method, update argument and hook method into UI event
     /*public void onButtonPressed(Uri uri) {
