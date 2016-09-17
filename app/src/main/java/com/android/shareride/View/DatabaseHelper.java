@@ -37,7 +37,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
     public static final String T4_COL3 = "TripID";
 
     public DatabaseHelper(Context context) {
-        super(context, DATABASE_NAME, null, 4);
+        super(context, DATABASE_NAME, null, 5);
 
     }
 
@@ -87,11 +87,13 @@ public class DatabaseHelper extends SQLiteOpenHelper{
 
         String password = pw;
         String username = userNam;
-        String USER_SELECT_QUERY =
+        /*String USER_SELECT_QUERY =
             String.format("SELECT * FROM %s WHERE %s = %s",
                     TABLE1_NAME,
                     T1_COL3,
-                    username);
+                    username);*/
+
+        String USER_SELECT_QUERY = "SELECT * FROM " + TABLE1_NAME + " WHERE " + T1_COL3 + " = '" + username + "'";
 
 
         Cursor cursor = db.rawQuery(USER_SELECT_QUERY, null);
