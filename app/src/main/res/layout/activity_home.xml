@@ -51,7 +51,7 @@
         android:layout_width="@dimen/button_width"
         android:layout_height="wrap_content"
         android:text="@string/search"
-        android:id="@+id/button"
+        android:id="@+id/findRideButton"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="80dp"
         android:textColor="@color/colorWhite"

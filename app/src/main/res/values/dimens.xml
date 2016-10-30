@@ -6,4 +6,7 @@
     <dimen name="button_text">20sp</dimen>
     <dimen name="button_width">280dp</dimen>
     <dimen name="welcome_content_margin">200dp</dimen>
+    <dimen name="text_margin">16dp</dimen>
+    <dimen name="list_column_width">120dp</dimen>
+    <dimen name="detail_label_width">160dp</dimen>
 </resources>

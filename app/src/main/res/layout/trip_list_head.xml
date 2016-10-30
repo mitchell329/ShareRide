@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="horizontal"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:padding="@dimen/activity_horizontal_margin"
+              android:id="@+id/tripListHeadLayout">
+
+    <TextView
+        android:layout_width="@dimen/list_column_width"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="From"
+        android:id="@+id/textView15"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="@dimen/button_text"/>
+
+    <TextView
+        android:layout_width="@dimen/list_column_width"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="To"
+        android:id="@+id/textView16"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="@dimen/button_text"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Departure"
+        android:id="@+id/textView17"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="@dimen/button_text"/>
+</LinearLayout>

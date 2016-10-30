@@ -27,4 +27,11 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="page_head">page_head_image</string>
+    <string name="label_from">From:</string>
+    <string name="label_to">To:</string>
+    <string name="placeholder_date">dd/mm/yyyy</string>
+    <string name="placeholder_time">hh:mm</string>
+    <string name="label_cost">Individual Cost: $</string>
+    <string name="button_text_post">POST</string>
 </resources>
